@@ -102,3 +102,10 @@ class MAP(Resource):
     @api.expect(map_post_spec)
     def post(self):
         return map_post()
+
+
+@api.route('/createDB')
+class MAP(Resource):
+    def get(self):
+        db.create_all()
+        return 200
