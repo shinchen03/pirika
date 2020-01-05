@@ -1,0 +1,12 @@
+.vscode
+.idea
+*.retry
+venv
+migrations
+*.pyc
+dist
+datachain-webui.log
+config.py
+test.py
+*.log
+__*

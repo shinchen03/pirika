@@ -1,0 +1,9 @@
+flask
+Flask-SQLAlchemy
+flask-migrate
+pymysql
+flask-cors
+requests
+mysql-connector
+flask-restplus
+Flask-SQLAlchemy
