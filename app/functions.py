@@ -17,7 +17,7 @@ def dashboard_get(userId):
 
 def dashboard_post(userId, dashboard):
     # create new dashboard
-    d = Dashboard(userId=userId, dashboard=dashboard)
+    d = Dashboard(userId=userId, content=dashboard)
     db.session.add(d)
     try:
         db.session.commit()
