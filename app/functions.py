@@ -23,14 +23,20 @@ def dashboard_post(userId, dashboard):
         db.session.commit()
     except exc.SQLAlchemyError as e:
         print(e)
-        return {'result': e}, 400
+        return {'result': str(e)}, 400
     return {'result': 'Success!'}, 200
 
 
-def dashboard_put():
-    # check auth?
+def dashboard_put(userId, dashboard, dashboardId):
     # update dashboard
-    return {'dashboard': {}}, 200
+    d = Dashboard(id=int(dashboardId), userId=userId, content=dashboard)
+    db.session.merge(d)
+    try:
+        db.session.commit()
+    except exc.SQLAlchemyError as e:
+        print(e)
+        return {'result': str(e)}, 400
+    return {'result': 'Success!'}, 200
 
 
 def csv_get():

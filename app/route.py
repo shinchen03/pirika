@@ -78,8 +78,8 @@ class Dashboard(Resource):
         return dashboard_post(userId, request.json['dashboard'])
 
     @api.expect(dashboard_put_spec)
-    def put(self):
-        return dashboard_put()
+    def put(self, userId):
+        return dashboard_put(userId, request.json['dashboard'], request.json['dashboardId'])
 
 
 @api.route('/csv')
