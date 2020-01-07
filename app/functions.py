@@ -39,6 +39,13 @@ def dashboard_put(userId, dashboard, dashboardId):
     return {'result': 'Success!'}, 200
 
 
+def dashboard_get_single(userId, dashboardId):
+    dashboard = Dashboard.query.filter_by(userId=userId, id=dashboardId).first()
+    if dashboard:
+        return {'dashboard': dashboard}, 200
+    else:
+        return {'result': 'Dashboard not found'}, 404
+
 def csv_get():
     # check auth?
     # get all the list of dashboard belongs to the user

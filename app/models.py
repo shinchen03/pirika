@@ -7,4 +7,4 @@ class Dashboard(db.Model):
     content = db.Column(db.Text)
 
     def __repr__(self):
-        return '<Dashboard: {}>'.format(self.id)
+        return '<DashboardId: {}, UserId: {}, Content: {}>'.format(self.id, self.userId, self.content)
