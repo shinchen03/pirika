@@ -6,6 +6,5 @@ migrations
 *.pyc
 dist
 datachain-webui.log
-config.py
 test.py
 *.log

@@ -4,7 +4,8 @@ import json
 
 
 def login(userId, password):
-    userList = {'test': 'test', 'pirika': 'pirika', 'test2': 'test2', 'test3': 'test3'}
+    userList = {'test': 'test', 'user1': 'muroran1', 'user2': 'muroran2', 'user3': 'muroran3', 'user4': 'muroran4',
+                'user5': 'muroran5'}
     if userId in userList and userList[userId] == password:
         return {'result': 'Success!'}, 200
     return {'result': 'Login failed'}, 400
