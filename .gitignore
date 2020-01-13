@@ -9,4 +9,3 @@ datachain-webui.log
 config.py
 test.py
 *.log
-__*

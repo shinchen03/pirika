@@ -85,11 +85,13 @@ class Dashboard(Resource):
     def put(self, userId):
         return dashboard_put(userId, request.json['dashboard'], request.json['dashboardId'])
 
+
 @api.route('/dashboard/<string:userId>/<string:dashboardId>')
 class SDashboard(Resource):
     @api.marshal_with(dashboard_single_get_response_spec)
     def get(self, userId, dashboardId):
         return dashboard_get_single(userId, dashboardId)
+
 
 @api.route('/csv')
 class CSV(Resource):

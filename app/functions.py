@@ -1,5 +1,6 @@
 from app.models import *
 from sqlalchemy import exc
+import json
 
 
 def login(userId, password):
@@ -12,7 +13,7 @@ def login(userId, password):
 def dashboard_get(userId):
     # get all the list of dashboard belongs to the user
     dashboard = Dashboard.query.filter_by(userId=userId).all()
-    return {'dashboard': dashboard}, 200
+    return json.loads(dashboard), 200
 
 
 def dashboard_post(userId, dashboard):
@@ -42,9 +43,10 @@ def dashboard_put(userId, dashboard, dashboardId):
 def dashboard_get_single(userId, dashboardId):
     dashboard = Dashboard.query.filter_by(userId=userId, id=dashboardId).first()
     if dashboard:
-        return {'dashboard': dashboard}, 200
+        return json.loads(dashboard), 200
     else:
         return {'result': 'Dashboard not found'}, 404
+
 
 def csv_get():
     # check auth?
