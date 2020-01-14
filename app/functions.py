@@ -5,7 +5,7 @@ import json
 
 def login(userId, password):
     userList = {'test': 'test', 'user1': 'muroran1', 'user2': 'muroran2', 'user3': 'muroran3', 'user4': 'muroran4',
-                'user5': 'muroran5'}
+                'user5': 'muroran5', 'aaa': 'aaa'}
     if userId in userList and userList[userId] == password:
         return {'result': 'Success!'}, 200
     return {'result': 'Login failed'}, 400
@@ -13,8 +13,12 @@ def login(userId, password):
 
 def dashboard_get(userId):
     # get all the list of dashboard belongs to the user
-    dashboard = Dashboard.query.filter_by(userId=userId).all()
-    return json.loads(dashboard), 200
+    dashboards = Dashboard.query.filter_by(userId=userId).all()
+    res = []
+    for dashboard in dashboards:
+        d = {'id': dashboard.id, 'userId': dashboard.userId}
+        res.append({**d, **json.loads(dashboard.content)})
+    return {'dashboards': res}, 200
 
 
 def dashboard_post(userId, dashboard):
@@ -44,7 +48,8 @@ def dashboard_put(userId, dashboard, dashboardId):
 def dashboard_get_single(userId, dashboardId):
     dashboard = Dashboard.query.filter_by(userId=userId, id=dashboardId).first()
     if dashboard:
-        return json.loads(dashboard), 200
+        d = {'id': dashboard.id, 'userId': dashboard.userId}
+        return {**d, **json.loads(dashboard.content)}, 200
     else:
         return {'result': 'Dashboard not found'}, 404
 

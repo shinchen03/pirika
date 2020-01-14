@@ -15,13 +15,13 @@ login_post_response_spec = api.model('Login POST Response', {
     'result': fields.String(description='Result'),
 })
 
-dashboard_get_response_spec = api.model('Dashboard GET Response', {
-    'dashboard': fields.String(description='Dashboard list'),
-})
+# dashboard_get_response_spec = api.model('Dashboard GET Response', {
+#     'dashboards': field.list(description='Dashboard list'),
+# })
 
-dashboard_single_get_response_spec = api.model('Specific Dashboard GET Response', {
-    'dashboard': fields.String(description='Dashboard'),
-})
+# dashboard_single_get_response_spec = api.model('Specific Dashboard GET Response', {
+#     'dashboard': fields.String(description='Dashboard'),
+# })
 
 dashboard_post_spec = api.model('Dashboard POST', {
     'dashboard': fields.String(description='New dashboard')
@@ -52,9 +52,7 @@ map_get_spec = api.model('MAP GET', {
 })
 
 map_post_spec = api.model('MAP POST', {
-    'userId': fields.String(description='UserId'),
-    'dashboardId': fields.String(description='Dashboard id'),
-    'dashboard': fields.String(description='Update dashboard')
+    'map': fields.String(description='Target map json string')
 })
 
 
@@ -73,7 +71,7 @@ class Login(Resource):
 
 @api.route('/dashboard/<string:userId>')
 class Dashboard(Resource):
-    @api.marshal_with(dashboard_get_response_spec)
+    # @api.marshal_with(dashboard_get_response_spec)
     def get(self, userId):
         return dashboard_get(userId)
 
@@ -88,7 +86,7 @@ class Dashboard(Resource):
 
 @api.route('/dashboard/<string:userId>/<string:dashboardId>')
 class SDashboard(Resource):
-    @api.marshal_with(dashboard_single_get_response_spec)
+    # @api.marshal_with(dashboard_single_get_response_spec)
     def get(self, userId, dashboardId):
         return dashboard_get_single(userId, dashboardId)
 

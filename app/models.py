@@ -1,4 +1,5 @@
 from app import db
+import json
 
 
 class Dashboard(db.Model):
@@ -7,4 +8,8 @@ class Dashboard(db.Model):
     content = db.Column(db.Text)
 
     def __repr__(self):
-        return '<DashboardId: {}, UserId: {}, Content: {}>'.format(self.id, self.userId, self.content)
+        try:
+            content = json.loads(self.content)
+        except ValueError:
+            content = self.content
+        return '<DashboardId: {}, UserId: {}, Content: {}>'.format(self.id, self.userId, content)
