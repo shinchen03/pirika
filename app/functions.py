@@ -30,7 +30,7 @@ def dashboard_post(userId, dashboard):
     except exc.SQLAlchemyError as e:
         print(e)
         return {'result': str(e)}, 400
-    return {'result': 'Success!'}, 200
+    return {'result': 'Success!', 'dashboardId': d.id}, 200
 
 
 def dashboard_put(userId, dashboard, dashboardId):
