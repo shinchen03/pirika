@@ -28,7 +28,6 @@ dashboard_post_spec = api.model('Dashboard POST', {
 })
 
 dashboard_put_spec = api.model('Dashboard PUT', {
-    'userId': fields.String(description='UserId'),
     'dashboardId': fields.String(description='Dashboard id'),
     'dashboard': fields.String(description='Update dashboard')
 })

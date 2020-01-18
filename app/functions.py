@@ -17,7 +17,9 @@ def dashboard_get(userId):
     res = []
     for dashboard in dashboards:
         d = {'id': dashboard.id, 'userId': dashboard.userId}
-        res.append({**d, **json.loads(dashboard.content)})
+        dashboardJson = json.loads(dashboard.content)
+        dashboardJson['id'] = dashboard.id
+        res.append(dashboardJson)
     return {'dashboards': res}, 200
 
 
@@ -30,7 +32,7 @@ def dashboard_post(userId, dashboard):
     except exc.SQLAlchemyError as e:
         print(e)
         return {'result': str(e)}, 400
-    return {'result': 'Success!', 'dashboardId': d.id}, 200
+    return {'result': 'Success!', 'dashboardId': d.id}, 201
 
 
 def dashboard_put(userId, dashboard, dashboardId):
@@ -48,8 +50,10 @@ def dashboard_put(userId, dashboard, dashboardId):
 def dashboard_get_single(userId, dashboardId):
     dashboard = Dashboard.query.filter_by(userId=userId, id=dashboardId).first()
     if dashboard:
-        d = {'id': dashboard.id, 'userId': dashboard.userId}
-        return {**d, **json.loads(dashboard.content)}, 200
+        # d = {'id': dashboard.id, 'userId': dashboard.userId}
+        dashboardJson = json.loads(dashboard.content)
+        dashboardJson['id'] = dashboard.id
+        return dashboardJson, 200
     else:
         return {'result': 'Dashboard not found'}, 404
 
