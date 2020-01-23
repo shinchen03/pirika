@@ -7,3 +7,5 @@ requests
 mysql-connector
 flask-restplus
 Flask-SQLAlchemy
+pandas
+google-cloud-storage

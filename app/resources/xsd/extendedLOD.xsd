@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/ure/1.1" xmlns:urg="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/urg/1.1" xmlns:core="http://www.opengis.net/citygml/2.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:grp="http://www.opengis.net/citygml/cityobjectgroup/2.0" targetNamespace="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/ure/1.1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.1.0">
+	<xs:annotation>
+		<xs:documentation>XMLSchema for Extended LOD module</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://www.opengis.net/gml" schemaLocation="http://schemas.opengis.net/gml/3.1.1/base/gml.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/cityobjectgroup/2.0" schemaLocation="http://schemas.opengis.net/citygml/cityobjectgroup/2.0/cityObjectGroup.xsd"/>
+	<xs:import namespace="http://www.opengis.net/citygml/2.0" schemaLocation="http://schemas.opengis.net/citygml/2.0/cityGMLBase.xsd"/>
+	<xs:import namespace="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/urg/1.1" schemaLocation="http://www.kantei.go.jp/jp/singi/tiiki/toshisaisei/itoshisaisei/iur/1.1/statisticalGrid.xsd"/>
+	<!-- ========================================================= -->
+	<!-- ==================== ExtendedLOD module ================ -->
+	<!-- ========================================================= -->
+	<xs:element name="lod-1MultiSurfaceGeometry" type="gml:MultiSurfacePropertyType" substitutionGroup="urg:_GenericApplicationPropertyOfStatisticalGrid"/>
+	<xs:element name="lod-2MultiSurfaceGeometry" type="gml:MultiSurfacePropertyType" substitutionGroup="urg:_GenericApplicationPropertyOfStatisticalGrid"/>
+</xs:schema>

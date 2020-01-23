@@ -1,6 +1,9 @@
 from app.models import *
 from sqlalchemy import exc
 import json
+from app.src.main import PASDownloader
+from flask import Response
+from google.cloud import storage
 
 
 def login(userId, password):
@@ -58,10 +61,16 @@ def dashboard_get_single(userId, dashboardId):
         return {'result': 'Dashboard not found'}, 404
 
 
-def csv_get():
-    # check auth?
+def csv_get(csvId):
     # get all the list of dashboard belongs to the user
-    return {'dashboard': {}}, 200
+    storage_client = storage.Client()
+    # bucket = storage_client.get_bucket('iur-csv')
+    # blob = bucket.blob('devices.csv')
+    # print(blob)
+    buckets = list(storage_client.list_buckets())
+    print(buckets)
+    return {'csv': buckets}, 200
+    # return {'dashboard': {}}, 200
 
 
 def csv_post():
@@ -76,7 +85,12 @@ def map_get():
     return {'dashboard': {}}, 200
 
 
-def map_post():
-    # check auth?
-    # create new dashboard
-    return {'dashboard': {}}, 200
+def map_post(map):
+    types = {'kml': 'application/vnd.google-earth.kml+xml', 'gml': 'application/gml+xml; version=3.2'}
+
+    mapJson = json.loads(map)
+    type = mapJson['exportType']
+    resp = Response(PASDownloader.convert(mapJson))
+    resp.headers['Content-Type'] = types[type]
+    return resp
+    # return send_file(PASDownloader.convert(json.loads(map)), as_attachment=True)

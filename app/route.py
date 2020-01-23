@@ -33,9 +33,7 @@ dashboard_put_spec = api.model('Dashboard PUT', {
 })
 
 csv_get_spec = api.model('CSV GET', {
-    'userId': fields.String(description='UserId'),
-    'dashboardId': fields.String(description='Dashboard id'),
-    'dashboard': fields.String(description='Update dashboard')
+    'csvId': fields.String(description='csvId'),
 })
 
 csv_post_spec = api.model('CSV POST', {
@@ -90,11 +88,10 @@ class SDashboard(Resource):
         return dashboard_get_single(userId, dashboardId)
 
 
-@api.route('/csv')
+@api.route('/csv/<string:csvId>')
 class CSV(Resource):
-    @api.expect(csv_get_spec)
-    def get(self):
-        return csv_get()
+    def get(self, csvId):
+        return csv_get(csvId)
 
     @api.expect(csv_post_spec)
     def post(self):
@@ -109,7 +106,7 @@ class MAP(Resource):
 
     @api.expect(map_post_spec)
     def post(self):
-        return map_post()
+        return map_post(request.json['map'])
 
 
 @api.route('/createDB')

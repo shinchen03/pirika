@@ -8,3 +8,6 @@ dist
 datachain-webui.log
 test.py
 *.log
+PIRIKA-PAS-CityGML
+app/resources
+app/src
